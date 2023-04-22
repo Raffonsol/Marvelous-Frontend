@@ -1,38 +1,69 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #F3F3F3;
+  border: 0.1rem solid black;
+  width: 80%;
+  padding: 2rem 2rem 0 2rem;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.Title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.InputsSection {
+  margin-top: 5.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Input {
+  border-radius: 0.35rem;
+  height: 2rem;
+  width: 12rem;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.Add {
+  display: flex;
+  justify-content: end;
+}
+
+.AddButton {
+  height: 2.3rem;
+  background-color: #CFE2F4;
+  width: 5rem;
+  margin-left: 0.5rem;
+}
+
+.TaskListSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2.5rem;
+  gap: 5rem
+}
+.TaskList {
+  width: 100%;
+  margin-bottom: 5rem;
+}
+.ListHeader {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0.4rem;
+}
+.ListTitle {
+  font-size: 1.5rem;
 }
