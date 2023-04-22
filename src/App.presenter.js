@@ -1,21 +1,46 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getTasks, addTask } from "./modules/repository";
+import { getTasks, addTask, updateTask } from "./modules/repository";
 
 const usePresenter = () => {
   const [loading, setLoading] = useState(true);
-  const [tasks, setTasks] = useState([]);
+  const [activeTasks, setActiveTasks] = useState([]);
+  const [doneTasks, setDoneTasks] = useState([]);
   const [nameToAdd, setNameToAdd] = useState('');
   
   // when loading is set to true, this fetches tasks
   useEffect(() => {
-    getTasks().then((data) => {
+    getTasks('To Do').then((data) => {
+      setActiveTasks(data);
+    }).then(() => {
+      return getTasks('Done');
+    }).then( (data) => {
+      setDoneTasks(data);
       setLoading(false);
-      setTasks(data);
     });
   }, [loading]);
 
   if (loading) return { loading };
+
+  // Function to map props for a list, based on status
+  const mapTaskList = (status) => {
+    return {
+      // status will be either 'To Do' or 'Done'
+      title: status,
+      items: (status === 'To Do' ? activeTasks : doneTasks).map(
+        (task, index) => {
+          return {
+            ...task,
+            key: index,
+            onClick: () => {
+              updateTask(task.id);
+              setLoading(true);
+            },
+          }
+        },
+      ),
+    };
+  };
 
   const props = {
     appName: 'Marvelous v2.0',
@@ -37,24 +62,8 @@ const usePresenter = () => {
     search: {
       placeholder: 'Search..'
     },
-    toDo: {
-      title: 'To Do',
-      items: tasks.filter(task => task.status === 'To Do').map((task) => {
-        return {
-          name: task.name,
-          status: task.status,
-        }
-      }),
-    },
-    done: {
-      title: 'Done',
-      items: tasks.filter(task => task.status === 'Done').map((task) => {
-        return {
-          name: task.name,
-          status: task.status,
-        }
-      }),
-    },
+    toDo: mapTaskList('To Do'),
+    done: mapTaskList('Done'),
   };
   
   return props;

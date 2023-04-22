@@ -40,8 +40,7 @@ function App() {
           <div className='ListItems'>
             {toDo?.items?.map((item) => (
               <TaskItem 
-                name={item.name}
-                status={item.status}
+                {...item}
               />
             ))}
           </div>
@@ -53,10 +52,9 @@ function App() {
           </div>
           <div className='ListItems'>
           {done?.items?.map((item) => (
-              <TaskItem 
-                name={item.name}
-                status={item.status}
-              />
+              item.id ? <TaskItem 
+                {...item}
+              /> : ''
             ))}
           </div>
         </div>
