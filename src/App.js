@@ -1,8 +1,9 @@
 import './App.css';
 import TaskItem from './components/TaskItem/TaskItem';
+import ConfirmationModal from './components/ConfirmationModal/ConfirmationModal';
 import usePresenter from './App.presenter';
 
-function App() {
+const App = () => {
   const {
     appName,
     nameInput,
@@ -11,6 +12,8 @@ function App() {
     toDo,
     done,
     loading,
+    deleteLink,
+    confirmationModal,
   } = usePresenter();
   if (loading) {
     return '...loading';
@@ -21,7 +24,7 @@ function App() {
         <span className='Title'>
           {appName}
         </span>
-        <a href='#' onClick={(event) =>event.preventDefault()}>Delete all tasks</a>
+        <a href='#' {...deleteLink}>Delete all tasks</a>
       </header>
 
       <div className='InputsSection'>
@@ -29,7 +32,12 @@ function App() {
           <input className='NameInput Input' value={(nameInput.value)} onChange={nameInput.onTextChanged}></input>
           <button className='AddButton Input' onClick={button?.onClick}>{button?.text}</button>
         </div>
-        <input className='SearchInput Input' placeholder={search?.placeholder}></input>
+        <input 
+          className='SearchInput Input'
+          value={(search.value)}
+          onChange={search.onTextChanged}
+          placeholder={search?.placeholder}
+        ></input>
       </div>
 
       <div className='TaskListSection'>
@@ -59,6 +67,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      <ConfirmationModal {...confirmationModal}/>
 
     </div>
   );

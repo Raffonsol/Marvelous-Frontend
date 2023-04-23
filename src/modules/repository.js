@@ -35,3 +35,10 @@ export const updateTask = async (id) => {
   );
   return data;
 };
+
+export const deleteTasks = async (status) => {
+  const { data } = await axiosInstance.delete(
+    `http://localhost:4200/Tasks${status ? `?status=${status}` : ''}`,
+  );
+  return data;
+};
