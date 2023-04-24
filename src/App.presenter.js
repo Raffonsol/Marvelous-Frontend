@@ -35,6 +35,7 @@ const usePresenter = () => {
       // finish loading
       setLoading(false);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   // polling function to keep frontent updated. Checks every minute
