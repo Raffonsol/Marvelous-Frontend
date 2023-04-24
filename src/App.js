@@ -24,7 +24,7 @@ const App = () => {
         <span className='Title'>
           {appName}
         </span>
-        <a href='#' {...deleteLink}>Delete all tasks</a>
+        <a href='./' {...deleteLink}>Delete all tasks</a>
       </header>
 
       <div className='InputsSection'>
