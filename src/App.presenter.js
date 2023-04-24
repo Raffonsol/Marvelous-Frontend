@@ -82,8 +82,8 @@ const usePresenter = () => {
     },
     button: {
       text: 'Add',
-      onClick: () => {
-        addTask(nameToAdd);
+      onClick: async () => {
+        await addTask(nameToAdd);
         setNameToAdd('');
         setLoading(true);
       },
@@ -116,8 +116,8 @@ const usePresenter = () => {
       },
       yesButton: {
         value: 'Yes',
-        onClick: () => {
-          deleteTasks(deleteDoneOnly ? 'Done' : undefined);
+        onClick: async () => {
+          await deleteTasks(deleteDoneOnly ? 'Done' : undefined);
           setLoading(true);
         },
       },
