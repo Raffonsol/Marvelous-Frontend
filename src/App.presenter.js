@@ -118,11 +118,15 @@ const usePresenter = () => {
         value: 'Yes',
         onClick: async () => {
           await deleteTasks(deleteDoneOnly ? 'Done' : undefined);
+          setShowConfirmationModal(false);
           setLoading(true);
         },
       },
       noButton: {
         value: 'No',
+        onClick: () => {
+          setShowConfirmationModal(false);
+        },
       },
       onOverlayClick: () => {
         if (!['ConfirmationModal', 'checkbox'].includes(document.activeElement.className)) {
