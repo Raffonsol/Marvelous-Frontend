@@ -59,8 +59,8 @@ const usePresenter = () => {
           return {
             ...task,
             key: index,
-            onClick: () => {
-              updateTask(task.id);
+            onClick: async () => {
+              await updateTask(task.id);
               setLoading(true);
             },
           }

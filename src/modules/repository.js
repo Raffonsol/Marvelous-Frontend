@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { config } from '../lib/config'
 
 const axiosInstance = axios.create({ withCredentials: true });
 
@@ -13,16 +14,18 @@ const onResponseError = (error) => Promise.reject(error);
 axiosInstance.interceptors.request.use(onRequest, onRequestError);
 axiosInstance.interceptors.response.use(onResponse, onResponseError);
 
+const apiUrl = config.url.API_URL
+
 export const getTasks = async (status) => {
   const { data } = await axiosInstance.get(
-    `http://localhost:4200/Tasks?status=${status}`,
+    `${apiUrl}/Tasks?status=${status}`,
   );
   return data;
 };
 
 export const addTask = async (name) => {
   const { data } = await axiosInstance.post(
-    `http://localhost:4200/Task`, {
+    `${apiUrl}/Task`, {
       name,
     }
   );
@@ -31,14 +34,14 @@ export const addTask = async (name) => {
 
 export const updateTask = async (id) => {
   const { data } = await axiosInstance.patch(
-    `http://localhost:4200/Task/${id}`
+    `${apiUrl}/Task/${id}`
   );
   return data;
 };
 
 export const deleteTasks = async (status) => {
   const { data } = await axiosInstance.delete(
-    `http://localhost:4200/Tasks${status ? `?status=${status}` : ''}`,
+    `${apiUrl}/Tasks${status ? `?status=${status}` : ''}`,
   );
   return data;
 };
